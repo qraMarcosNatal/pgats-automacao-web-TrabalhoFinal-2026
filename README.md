@@ -100,4 +100,4 @@ Para baixar o artefato, abra a execução desejada na página do GitHub Actions,
 
 - `.gitignore` exclui `node_modules/`, `allure-results/`, `allure-report/`, `cypress/screenshots/` e `cypress/videos/`.
 - As specs antigas permanecem no projeto local, mas a CI executa somente `cypress/e2e/automation-exercise-conclusao.cy.js`.
-- O README e o ZIP final devem ser entregues após a revisão final.
+- O projeto reúne os cenários Cypress, os módulos V3, a documentação e a configuração de execução local e de CI.
