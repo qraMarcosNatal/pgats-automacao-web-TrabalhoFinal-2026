@@ -1,0 +1,22 @@
+{
+  "name": "pgats-automacao-web-2026",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "allure:generate": "allure generate ./allure-results",
+    "allure:open": "allure open ./allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "allure": "^3.22.1",
+    "allure-cypress": "^3.14.0",
+    "cypress": "^13.7.3",
+    "cypress-mochawesome-reporter": "^5.0.0",
+    "cypress-xpath": "^2.0.1"
+  }
+}
