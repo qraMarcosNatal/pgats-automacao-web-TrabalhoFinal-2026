@@ -1,0 +1,45 @@
+name: Cypress E2E - PGATS
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  schedule:
+    - cron: '0 11 * * *'
+
+jobs:
+  cypress-e2e:
+    name: Executar spec final no Chrome
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 25 com cache npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '25'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Executar spec final no Chrome headless
+        id: run-cypress
+        run: npx cypress run --browser chrome --headless --spec cypress/e2e/automation-exercise-conclusao.cy.js
+
+      - name: Gerar relatorio HTML do Allure
+        if: ${{ always() && !cancelled() && steps.run-cypress.outcome != 'skipped' }}
+        run: npm run allure:generate
+
+      - name: Publicar resultados e relatorio Allure
+        if: ${{ always() && !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados-cypress-allure
+          path: |
+            allure-results/
+            allure-report/
+          if-no-files-found: warn
